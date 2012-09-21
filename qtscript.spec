@@ -1,13 +1,13 @@
-%define _qtmodule_snapshot_version 5~5.0.0~alpha1
+%define _qtmodule_snapshot_version 5.0.0-beta1
 Name:       qt5-qtscript
 Summary:    Qt scripting module
-Version:    %{_qtmodule_snapshot_version}
+Version:    5.0.0~beta1
 Release:    1%{?dist}
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
-Source0:    %{name}-%{version}.tar.gz
-Patch0:     create_prl_and_pc_files.patch
+#Source0:    %{name}-%{version}.tar.xz
+Source0:    qtscript-opensource-src-%{_qtmodule_snapshot_version}.tar.xz
 BuildRequires:  qt5-qtcore-devel
 BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtwidgets-devel
@@ -38,9 +38,7 @@ This package contains the scripting module development files
 #### Build section
 
 %prep
-%setup -q -n %{name}
-%patch0 -p1
-
+%setup -q -n qtscript-opensource-src-%{_qtmodule_snapshot_version}
 
 %build
 export QTDIR=/usr/share/qt5
@@ -59,6 +57,10 @@ find %{buildroot}%{_libdir}/pkgconfig -type f -name '*.pc' \
 find %{buildroot}%{_libdir} -type f -name '*.prl' \
 -exec sed -i -e "/^QMAKE_PRL_BUILD_DIR/d;s/\(QMAKE_PRL_LIBS =\).*/\1/" {} \;
 #
+# We don't need qt5/Qt/
+rm -rf %{buildroot}/%{_includedir}/qt5/Qt
+
+
 %fdupes %{buildroot}/%{_includedir}
 
 
