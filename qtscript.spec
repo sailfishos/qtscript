@@ -1,7 +1,7 @@
-%define _qtmodule_snapshot_version 5.0.0-beta1
+%define _qtmodule_snapshot_version 5.0.0
 Name:       qt5-qtscript
 Summary:    Qt scripting module
-Version:    5.0.0~beta1
+Version:    5.0.0
 Release:    1%{?dist}
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
@@ -79,17 +79,17 @@ rm -rf %{buildroot}/%{_includedir}/qt5/Qt
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libQtScript.so.5
-%{_libdir}/libQtScript.so.5.*
-%{_libdir}/libQtScriptTools.so.5
-%{_libdir}/libQtScriptTools.so.5.*
+%{_libdir}/libQt5Script.so.5
+%{_libdir}/libQt5Script.so.5.*
+%{_libdir}/libQt5ScriptTools.so.5
+%{_libdir}/libQt5ScriptTools.so.5.*
 
 %files devel
 %defattr(-,root,root,-)
-%{_libdir}/libQtScript.so
-%{_libdir}/libQtScript.prl
-%{_libdir}/libQtScriptTools.so
-%{_libdir}/libQtScriptTools.prl
+%{_libdir}/libQt5Script.so
+%{_libdir}/libQt5Script.prl
+%{_libdir}/libQt5ScriptTools.so
+%{_libdir}/libQt5ScriptTools.prl
 %{_libdir}/pkgconfig/*
 %{_includedir}/qt5/*
 %{_datadir}/qt5/mkspecs/
