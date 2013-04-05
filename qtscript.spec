@@ -1,7 +1,7 @@
-%define _qtmodule_snapshot_version 5.0.0
+%define _qtmodule_snapshot_version 5.0.1
 Name:       qt5-qtscript
 Summary:    Qt scripting module
-Version:    5.0.0
+Version:    5.0.1
 Release:    1%{?dist}
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
@@ -42,7 +42,7 @@ This package contains the scripting module development files
 
 %build
 export QTDIR=/usr/share/qt5
-qmake
+qmake -qt=5
 make %{?_smp_flags}
 
 %install
