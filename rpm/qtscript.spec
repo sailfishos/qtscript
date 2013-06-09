@@ -40,6 +40,7 @@ This package contains the scripting module development files
 
 %build
 export QTDIR=/usr/share/qt5
+touch .git
 qmake -qt=5
 make %{?_smp_flags}
 
