@@ -1,7 +1,7 @@
 Name:       qt5-qtscript
 Summary:    Qt scripting module
 Version:    5.6.2
-Release:    1%{?dist}
+Release:    1
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
 URL:        http://qt.nokia.com
@@ -39,13 +39,11 @@ This package contains the scripting module development files
 %setup -q -n %{name}-%{version}
 
 %build
-export QTDIR=/usr/share/qt5
 touch .git
 %qmake5
-make %{?_smp_mflags}
+%make_build
 
 %install
-rm -rf %{buildroot}
 %qmake5_install
 # Remove unneeded .la files
 rm -f %{buildroot}/%{_libdir}/*.la
@@ -57,7 +55,7 @@ find %{buildroot}%{_libdir} -type f -name '*.prl' \
 -exec sed -i -e "/^QMAKE_PRL_BUILD_DIR/d;s/\(QMAKE_PRL_LIBS =\).*/\1/" {} \;
 #
 # We don't need qt5/Qt/
-rm -rf %{buildroot}/%{_includedir}/qt5/Qt
+rm -rf %{buildroot}/%{_qt5_includedir}/Qt
 
 
 %fdupes %{buildroot}/%{_includedir}
@@ -78,21 +76,21 @@ rm -rf %{buildroot}/%{_includedir}/qt5/Qt
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libQt5Script.so.5
-%{_libdir}/libQt5Script.so.5.*
-%{_libdir}/libQt5ScriptTools.so.5
-%{_libdir}/libQt5ScriptTools.so.5.*
+%{_qt5_libdir}/libQt5Script.so.5
+%{_qt5_libdir}/libQt5Script.so.5.*
+%{_qt5_libdir}/libQt5ScriptTools.so.5
+%{_qt5_libdir}/libQt5ScriptTools.so.5.*
 
 %files devel
 %defattr(-,root,root,-)
-%{_libdir}/libQt5Script.so
-%{_libdir}/libQt5Script.prl
-%{_libdir}/libQt5ScriptTools.so
-%{_libdir}/libQt5ScriptTools.prl
-%{_libdir}/pkgconfig/*
-%{_includedir}/qt5/*
-%{_datadir}/qt5/mkspecs/
-%{_libdir}/cmake/
+%{_qt5_libdir}/libQt5Script.so
+%{_qt5_libdir}/libQt5Script.prl
+%{_qt5_libdir}/libQt5ScriptTools.so
+%{_qt5_libdir}/libQt5ScriptTools.prl
+%{_qt5_libdir}/pkgconfig/*
+%{_qt5_includedir}/*
+%{_qt5_archdatadir}/mkspecs/
+%{_qt5_libdir}/cmake/
 
 
 
